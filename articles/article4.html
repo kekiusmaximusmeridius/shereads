@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 5 Must-Read Books | SHEreads</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Muli:wght@300;400;500;600&family=Clicker+Script&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3A3A3A;
+            --accent-color: #7D5A5A;
+            --background: #FAF7F5;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--background);
+            padding: 1rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 0 1.5rem;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .brand-name {
+            
+            margin: 0;
+            padding: 0;
+            width: auto;
+            height: 60px;
+        }
+
+        .brand-name:hover {
+            color: var(--accent-color);
+        }
+
+        .desktop-menu {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .desktop-menu {
+                display: flex;
+                gap: 2rem;
+            }
+
+            .desktop-menu a {
+                color: var(--primary-color);
+                text-decoration: none;
+                transition: color 0.3s ease;
+                font-family: 'Muli', sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 6px;
+                color: var(--primary-color);
+            }
+
+            .desktop-menu a:hover {
+                color: var(--accent-color);
+            }
+
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Muli', sans-serif;
+            line-height: 1.7;
+            color: var(--primary-color);
+            background-color: var(--background);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            margin-top: 80px;
+        }
+
+        .article-header {
+            margin-bottom: 3rem;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .article-date {
+            color: #888;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            margin: 2.5rem 0;
+        }
+
+        .article-content {
+            font-size: 1.05rem;
+            color: #555;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .article-content p {
+            margin-bottom: 1.8rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Mobile Menu Styles */
+        .menu-toggle {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 1100;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--primary-color);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger::before { top: -8px; }
+        .hamburger::after { top: 8px; }
+
+        .menu-toggle.active .hamburger {
+            background: transparent;
+        }
+
+        .menu-toggle.active .hamburger::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .menu-toggle.active .hamburger::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(250, 247, 245, 0.98);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+            font-family: 'Muli', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: var(--primary-color);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding: 3rem 0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .footer-links {
+                gap: 1.5rem;
+            }
+            .container {
+                padding: 1.5rem;
+            }
+
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-image {
+                height: 250px;
+                margin: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <img src="../assets/Shereads.png" class="brand-name" alt="SHEreads-LOGO">
+            <nav class="desktop-menu">
+                <a href="../index.html">HOME</a>
+                <a href="about.html">ABOUT</a>
+                <a href="contact.html">CONTACT</a>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+    
+    <nav class="mobile-menu">
+        <a href="../index.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+    </nav>
+
+    <main class="container">
+        <a href="../index.html" class="back-link">← All Articles</a>
+        
+        <div class="article-header">
+            <h1 class="article-title">Top 5 Must-Read Books for Young, Affluent Women</h1>
+            <div class="article-date">September 20, 2025</div>
+        </div>
+
+        <img src="../assets/article4.jpg" 
+             alt="Book collection" 
+             class="article-image">
+
+        <div class="article-content">
+            <h2>Power Dressing in Modern Literature</h2>
+            <p>In the realm of literature, fashion often emerges as more than just a superficial element of style. 
+              It becomes a profound narrative tool, a silent storyteller that weaves its own intricate subplots within the broader tapestry of a novel. Contemporary literature has seen a remarkable rise in the use of fashion to explore themes of identity, power, and transformation. Let's delve into how modern authors use clothing and fashion to enrich their narratives and bring their characters to life.</p>
+
+            <h3>Fashion as a Reflection of Identity</h3>
+            <p>In many contemporary novels, fashion serves as a mirror reflecting the characters' inner worlds. The clothes characters choose to wear—or are compelled to wear—can reveal their social status, personal insecurities, or aspirations. 
+                For instance, in Chimamanda Ngozi Adichie's Americanah, the protagonist Ifemelu's evolving fashion sense mirrors her journey of self-discovery and cultural adaptation, shifting from her native Nigerian styles to more Western aesthetics as she navigates life in the United States.</p>
+
+            <h3>Clothing as a Symbol of Power</h3>
+            <p>Power dressing, a term that gained popularity in the 1980s, refers to a style of clothing intended to convey authority and competence. In literature, this concept transcends mere professional attire. 
+                For example, in The Devil Wears Prada by Lauren Weisberger, fashion is wielded like a weapon. Miranda Priestly's impeccable designer wardrobe is not just about looking good; it’s a manifestation of her dominance and control within the cutthroat fashion industry. Her clothing choices intimidate and command respect, underscoring her position of power.</p>
+
+            <h3>Fashion as a Catalyst for Transformation</h3>
+            <p>Fashion also plays a pivotal role in character transformation. The metamorphosis of a character is often marked by a significant change in their wardrobe. In The Bell Jar by Sylvia Plath, Esther Greenwood's descent into depression is symbolized by her increasingly disheveled appearance. 
+                Conversely, in Sophie Kinsella's Confessions of a Shopaholic, Rebecca Bloomwood's fashion choices evolve from reckless consumerism to more thoughtful and deliberate selections, reflecting her personal growth and newfound understanding of self-worth.</p>
+
+
+            <h2>Conclusion: The Silent Narrator</h2>
+            <p>Fashion in contemporary novels is far from being a mere backdrop. It acts as a silent narrator, adding depth and layers of meaning to the characters and their stories. By paying attention to the clothes characters wear, readers can gain a richer understanding of the narrative's subtleties and complexities. In the hands of skilled authors, fashion transcends its material confines, becoming an integral part of the storytelling fabric that continues to captivate and inspire readers.</p>
+            <p>Happy reading and exploring the sartorial world of literature! 📚✨👗</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <a href="../about.html">about</a>
+                <a href="../contact.html">contact</a>
+                <a href="../faqs.html">faqs</a>
+            </div>
+            <div class="footer-column">
+                <a href="https://instagram.com/youraccount">instagram</a>
+                <a href="https://pinterest.com/youraccount">pinterest</a>
+                <a href="../index.html">blog</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const header = document.querySelector('.header');
+
+            menuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
