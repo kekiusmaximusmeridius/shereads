@@ -7,10 +7,6 @@
   to = "/index.html"
   status = 200
 
-[build.environment]
-  HUGO_VERSION = "0.54.0"
-  NODE_ENV = "production"
-
 [[headers]]
   for = "/*"
     [headers.values]
